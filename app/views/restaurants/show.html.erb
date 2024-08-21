@@ -1,21 +1,30 @@
 <div class="container">
-  <h1><%= @restaurant.name %></h1>
-  <p><%= @restaurant.address %></p>
-  <p><%= @restaurant.phone_number %></p>
-  <p><%= @restaurant.category %></p>
-
-  <div>
-    <% @restaurant.reviews.each do |review|%>
-    <%= review.content %>
-    <%= review.rating %>
-    <% end %>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h4 class="card-title"><%= @restaurant.name %></h5>
+      <h5 class="card-subtitle mb-2 text-muted pb-2"><%= @restaurant.address %></h6>
+      <h5 class="card-subtitle mb-2 text-muted pb-2"><%= @restaurant.phone_number %></h6>
+      <h5 class="card-subtitle mb-2 text-muted pb-2"><%= @restaurant.category %></h6>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <div class="card-header">
+        Reviews
+      </div>
+      <ul class="list-group list-group-flush">
+      <% @restaurant.reviews.each do |review|%>
+        <li class="list-group-item"><%= review.content %></li>
+        <li class="list-group-item"><%= review.rating %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-  <%#= link_to "add a review ", new_restaurant_review_path(@restaurant), class: "btn btn-primary"%>
-  <%= link_to "Back to restaurants", restaurants_path, class: "btn btn-primary" %>
-  <h1>New review</h1>
-  <%= simple_form_for ([@restaurant, @review]) do |f| %>
-    <%= f.input :content %>
-    <%= f.input :rating, input_html: { min: '0', max: '5' } %>
-    <%= f.submit "Submit review", class: "btn btn-primary" %>
-  <% end %>
+      <%#= link_to "add a review ", new_restaurant_review_path(@restaurant), class: "btn btn-primary"%>
+      <%= link_to "Back to restaurants", restaurants_path, class: "btn btn-primary" %>
+      <h1>New review</h1>
+      <%= simple_form_for ([@restaurant, @review]) do |f| %>
+        <%= f.input :content %>
+        <%= f.input :rating, input_html: { min: '0', max: '5' } %>
+        <%= f.submit "Submit review", class: "btn btn-primary" %>
+      <% end %>
+
 </div>
